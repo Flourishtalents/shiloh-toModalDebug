@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width,initial-scale=1'>
+	<meta name="description" content="The Shiloh Experience - Exceptional accommodations, seamless transportation, unforgettable tours, and personalized itineraries for your Ugandan adventure.">
+	<meta name="theme-color" content="#1e40af">
+
+	<!-- Performance optimizations -->
+	<meta http-equiv="x-dns-prefetch-control" content="on">
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+	<!-- Premium Typography -->
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+	<title>%sveltekit.title%</title>
+
+	<link rel='icon' type='image/png' href='%sveltekit.assets%/favicon.png'>
+	
+	<!-- Critical CSS for instant rendering -->
+	<style>
+		/* Critical above-the-fold styles */
+		body {
+			margin: 0;
+			font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+			background-color: #ffffff;
+		}
+	</style>
+
+	<script>
+		// Performance monitoring
+		performance.mark('page-start');
+
+		// Remove loading screen when DOM is ready
+		document.addEventListener('DOMContentLoaded', function() {
+			performance.mark('dom-ready');
+			document.body.classList.add('app-ready');
+		});
+
+		// Preload critical components
+		if ('requestIdleCallback' in window) {
+			requestIdleCallback(function() {
+				// SvelteKit handles preloading automatically
+				console.log('SvelteKit app loaded successfully');
+			});
+		}
+	</script>
+
+	%sveltekit.head%
+</head>
+
+<body data-sveltekit-preload-data="hover">
+	<div style="display: contents">%sveltekit.body%</div>
+	
+	<script>
+		// Register service worker for performance and offline support
+		if ('serviceWorker' in navigator && location.protocol === 'https:') {
+			window.addEventListener('load', () => {
+				navigator.serviceWorker.register('/sw.js')
+					.then(registration => {
+						console.log('SW registered: ', registration);
+					})
+					.catch(registrationError => {
+						console.log('SW registration failed: ', registrationError);
+					});
+			});
+		}
+
+		// Preconnect to external domains for faster loading
+		const preconnectDomains = [
+			'https://fonts.googleapis.com',
+			'https://fonts.gstatic.com'
+		];
+
+		preconnectDomains.forEach(domain => {
+			const link = document.createElement('link');
+			link.rel = 'preconnect';
+			link.href = domain;
+			document.head.appendChild(link);
+		});
+	</script>
+</body>
+</html>
