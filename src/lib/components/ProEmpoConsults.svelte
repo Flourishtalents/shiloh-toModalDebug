@@ -4,56 +4,10 @@
   let isVisible = false;
   
   onMount(() => {
-    // Hide all other components immediately
-    const hideElements = () => {
-      // Hide header and footer elements
-      const headers = document.querySelectorAll('header, .header');
-      const footers = document.querySelectorAll('footer, .footer');
-      const chatbots = document.querySelectorAll('.chatbot-modal, [class*="chatbot"]');
-      
-      [...headers, ...footers, ...chatbots].forEach(el => {
-        if (el && !el.closest('.pe-root-container')) {
-          el.style.display = 'none';
-          el.style.visibility = 'hidden';
-          el.style.opacity = '0';
-          el.style.pointerEvents = 'none';
-          el.style.position = 'absolute';
-          el.style.top = '-9999px';
-          el.style.left = '-9999px';
-        }
-      });
-
-      // Set body styles for complete isolation
-      document.body.style.margin = '0';
-      document.body.style.padding = '0';
-    };
-
-    hideElements();
-    
-    // Set visibility after hiding other elements
+    // Set visibility after a short delay
     setTimeout(() => {
       isVisible = true;
     }, 150);
-
-    // Cleanup function to restore when component unmounts
-    return () => {
-      document.body.style.margin = '';
-      document.body.style.padding = '';
-      
-      // Restore hidden elements
-      const hiddenElements = document.querySelectorAll('[style*="display: none"]');
-      hiddenElements.forEach(el => {
-        if (!el.closest('.pe-root-container')) {
-          el.style.display = '';
-          el.style.visibility = '';
-          el.style.opacity = '';
-          el.style.pointerEvents = '';
-          el.style.position = '';
-          el.style.top = '';
-          el.style.left = '';
-        }
-      });
-    };
   });
 
   function navigateToShiloh() {
@@ -253,328 +207,327 @@
 </div>
 
 <style>
-  /* Force all styles to apply globally to bypass Svelte scoping issues */
-  :global(.pe-root-container) {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-    line-height: 1.6 !important;
-    color: #1e293b !important;
-    background: #ffffff !important;
-    min-height: 100vh !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    box-sizing: border-box !important;
-    position: relative !important;
+  .pe-root-container {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #1e293b;
+    background: #ffffff;
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
   }
 
-  :global(.pe-hero-section) {
-    min-height: 100vh !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 3rem 2rem !important;
-    position: relative !important;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%) !important;
-    overflow: hidden !important;
-    color: #ffffff !important;
-    max-width: 1400px !important;
-    margin: 0 auto !important;
+  .pe-hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    position: relative;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+    overflow: hidden;
+    color: #ffffff;
+    max-width: 1400px;
+    margin: 0 auto;
   }
 
-  :global(.pe-hero-content) {
-    flex: 1 !important;
-    max-width: 700px !important;
-    position: relative !important;
-    z-index: 10 !important;
-    opacity: 0 !important;
-    transform: translateY(30px) !important;
-    transition: all 0.8s ease-out !important;
+  .pe-hero-content {
+    flex: 1;
+    max-width: 700px;
+    position: relative;
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
   }
 
-  :global(.pe-hero-content.pe-visible) {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
+  .pe-hero-content.pe-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   /* Contact Cards for Desktop */
-  :global(.pe-contact-cards) {
-    flex: 1 !important;
-    position: relative !important;
-    height: 500px !important;
-    display: none !important;
+  .pe-contact-cards {
+    flex: 1;
+    position: relative;
+    height: 500px;
+    display: none;
   }
 
-  :global(.pe-contact-card) {
-    position: absolute !important;
-    background: rgba(255, 255, 255, 0.1) !important;
-    backdrop-filter: blur(20px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    border-radius: 16px !important;
-    padding: 1.5rem !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 1rem !important;
-    color: #ffffff !important;
-    animation: pe-float 6s ease-in-out infinite !important;
-    min-width: 280px !important;
+  .pe-contact-card {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #ffffff;
+    animation: pe-float 6s ease-in-out infinite;
+    min-width: 280px;
   }
 
-  :global(.pe-card-1) {
-    top: 20% !important;
-    right: 20% !important;
-    animation-delay: 0s !important;
+  .pe-card-1 {
+    top: 20%;
+    right: 20%;
+    animation-delay: 0s;
   }
 
-  :global(.pe-card-2) {
-    top: 50% !important;
-    right: 10% !important;
-    animation-delay: 2s !important;
+  .pe-card-2 {
+    top: 50%;
+    right: 10%;
+    animation-delay: 2s;
   }
 
-  :global(.pe-card-3) {
-    top: 70% !important;
-    right: 30% !important;
-    animation-delay: 4s !important;
+  .pe-card-3 {
+    top: 70%;
+    right: 30%;
+    animation-delay: 4s;
   }
 
-  :global(.pe-contact-icon) {
-    width: 48px !important;
-    height: 48px !important;
-    background: rgba(217, 119, 6, 0.2) !important;
-    border-radius: 12px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    flex-shrink: 0 !important;
+  .pe-contact-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(217, 119, 6, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
   }
 
-  :global(.pe-contact-text) {
-    font-weight: 600 !important;
-    font-size: 0.9rem !important;
-    color: #ffffff !important;
+  .pe-contact-text {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #ffffff;
   }
 
   /* Mobile Contact Info */
-  :global(.pe-mobile-contact) {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 1rem !important;
-    margin-top: 2rem !important;
+  .pe-mobile-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
   }
 
-  :global(.pe-mobile-contact-item) {
-    display: flex !important;
-    align-items: center !important;
-    gap: 0.75rem !important;
-    color: #cbd5e1 !important;
-    font-size: 0.9rem !important;
+  .pe-mobile-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #cbd5e1;
+    font-size: 0.9rem;
   }
 
-  :global(.pe-main-logo) {
-    height: 80px !important;
-    width: auto !important;
-    filter: brightness(0) invert(1) !important;
-    display: block !important;
-    margin-bottom: 3rem !important;
+  .pe-main-logo {
+    height: 80px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    display: block;
+    margin-bottom: 3rem;
   }
 
-  :global(.pe-hero-title) {
-    font-size: 3.5rem !important;
-    font-weight: 700 !important;
-    line-height: 1.1 !important;
-    margin-bottom: 1.5rem !important;
-    color: #ffffff !important;
-    letter-spacing: -0.02em !important;
+  .pe-hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+    letter-spacing: -0.02em;
   }
 
-  :global(.pe-gradient-text) {
-    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    background-clip: text !important;
-    display: inline-block !important;
+  .pe-gradient-text {
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
   }
 
-  :global(.pe-hero-subtitle) {
-    font-size: 1.25rem !important;
-    color: #cbd5e1 !important;
-    margin-bottom: 3rem !important;
-    line-height: 1.7 !important;
-    max-width: 500px !important;
+  .pe-hero-subtitle {
+    font-size: 1.25rem;
+    color: #cbd5e1;
+    margin-bottom: 3rem;
+    line-height: 1.7;
+    max-width: 500px;
   }
 
-  :global(.pe-cta-buttons) {
-    display: flex !important;
-    gap: 1rem !important;
-    flex-wrap: wrap !important;
-    margin-top: 2rem !important;
+  .pe-cta-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
   }
 
-  :global(.pe-btn-primary), :global(.pe-btn-secondary) {
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 0.5rem !important;
-    padding: 1rem 2rem !important;
-    border-radius: 12px !important;
-    font-weight: 600 !important;
-    font-size: 1rem !important;
-    border: none !important;
-    cursor: pointer !important;
-    transition: all 0.3s ease !important;
-    text-decoration: none !important;
-    font-family: inherit !important;
+  .pe-btn-primary, .pe-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-family: inherit;
   }
 
-  :global(.pe-btn-primary) {
-    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%) !important;
-    color: #ffffff !important;
-    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3) !important;
+  .pe-btn-primary {
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
   }
 
-  :global(.pe-btn-secondary) {
-    background: rgba(255, 255, 255, 0.1) !important;
-    color: #ffffff !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    backdrop-filter: blur(10px) !important;
+  .pe-btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
   }
 
-  :global(.pe-services-section) {
-    padding: 6rem 2rem !important;
-    max-width: 1200px !important;
-    margin: 0 auto !important;
-    background: #ffffff !important;
+  .pe-services-section {
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #ffffff;
   }
 
-  :global(.pe-section-header) {
-    text-align: center !important;
-    margin-bottom: 4rem !important;
+  .pe-section-header {
+    text-align: center;
+    margin-bottom: 4rem;
   }
 
-  :global(.pe-section-title) {
-    font-size: 2.5rem !important;
-    font-weight: 700 !important;
-    margin-bottom: 1rem !important;
-    color: #0f172a !important;
+  .pe-section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #0f172a;
   }
 
-  :global(.pe-section-subtitle) {
-    font-size: 1.25rem !important;
-    color: #64748b !important;
-    max-width: 600px !important;
-    margin: 0 auto !important;
+  .pe-section-subtitle {
+    font-size: 1.25rem;
+    color: #64748b;
+    max-width: 600px;
+    margin: 0 auto;
   }
 
-  :global(.pe-services-grid) {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)) !important;
-    gap: 2rem !important;
+  .pe-services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
   }
 
-  :global(.pe-service-card) {
-    background: #ffffff !important;
-    padding: 2.5rem !important;
-    border-radius: 20px !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
-    border: 1px solid #f1f5f9 !important;
-    transition: all 0.3s ease !important;
+  .pe-service-card {
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f1f5f9;
+    transition: all 0.3s ease;
   }
 
-  :global(.pe-service-icon) {
-    width: 64px !important;
-    height: 64px !important;
-    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%) !important;
-    border-radius: 16px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    margin-bottom: 1.5rem !important;
-    color: #ffffff !important;
+  .pe-service-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
   }
 
-  :global(.pe-service-title) {
-    font-size: 1.5rem !important;
-    font-weight: 700 !important;
-    margin-bottom: 1rem !important;
-    color: #0f172a !important;
+  .pe-service-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #0f172a;
   }
 
-  :global(.pe-service-description) {
-    color: #64748b !important;
-    line-height: 1.7 !important;
+  .pe-service-description {
+    color: #64748b;
+    line-height: 1.7;
   }
 
-  :global(.pe-cta-section) {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
-    padding: 6rem 2rem !important;
-    text-align: center !important;
-    color: #ffffff !important;
+  .pe-cta-section {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    padding: 6rem 2rem;
+    text-align: center;
+    color: #ffffff;
   }
 
-  :global(.pe-cta-content) {
-    max-width: 600px !important;
-    margin: 0 auto !important;
+  .pe-cta-content {
+    max-width: 600px;
+    margin: 0 auto;
   }
 
-  :global(.pe-cta-title) {
-    font-size: 2.5rem !important;
-    font-weight: 700 !important;
-    color: #ffffff !important;
-    margin-bottom: 1rem !important;
-    line-height: 1.2 !important;
+  .pe-cta-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    line-height: 1.2;
   }
 
-  :global(.pe-cta-subtitle) {
-    font-size: 1.25rem !important;
-    color: #cbd5e1 !important;
-    margin-bottom: 3rem !important;
-    line-height: 1.6 !important;
+  .pe-cta-subtitle {
+    font-size: 1.25rem;
+    color: #cbd5e1;
+    margin-bottom: 3rem;
+    line-height: 1.6;
   }
 
   @media (min-width: 1024px) {
-    :global(.pe-contact-cards) {
-      display: block !important;
+    .pe-contact-cards {
+      display: block;
     }
-    :global(.pe-mobile-contact) {
-      display: none !important;
+    .pe-mobile-contact {
+      display: none;
     }
-    :global(.pe-hero-title) {
-      font-size: 3.5rem !important;
+    .pe-hero-title {
+      font-size: 3.5rem;
     }
   }
 
   @media (max-width: 1023px) {
-    :global(.pe-hero-section) {
-      padding: 2rem 1.5rem !important;
-      flex-direction: column !important;
-      text-align: center !important;
+    .pe-hero-section {
+      padding: 2rem 1.5rem;
+      flex-direction: column;
+      text-align: center;
     }
-    :global(.pe-hero-title) {
-      font-size: 2.5rem !important;
+    .pe-hero-title {
+      font-size: 2.5rem;
     }
-    :global(.pe-hero-subtitle) {
-      font-size: 1.1rem !important;
-      max-width: 100% !important;
+    .pe-hero-subtitle {
+      font-size: 1.1rem;
+      max-width: 100%;
     }
-    :global(.pe-services-grid) {
-      grid-template-columns: 1fr !important;
+    .pe-services-grid {
+      grid-template-columns: 1fr;
     }
-    :global(.pe-services-section) {
-      padding: 4rem 1.5rem !important;
+    .pe-services-section {
+      padding: 4rem 1.5rem;
     }
-    :global(.pe-cta-section) {
-      padding: 4rem 1.5rem !important;
+    .pe-cta-section {
+      padding: 4rem 1.5rem;
     }
   }
 
   @media (max-width: 480px) {
-    :global(.pe-hero-section) {
-      padding: 2rem 1rem !important;
+    .pe-hero-section {
+      padding: 2rem 1rem;
     }
-    :global(.pe-hero-title) {
-      font-size: 2rem !important;
+    .pe-hero-title {
+      font-size: 2rem;
     }
-    :global(.pe-hero-subtitle) {
-      font-size: 1rem !important;
+    .pe-hero-subtitle {
+      font-size: 1rem;
     }
   }
 </style>

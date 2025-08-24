@@ -126,34 +126,6 @@
     // Dispatch login event to trigger auth modal
     window.dispatchEvent(new CustomEvent('showAuth'));
   }
-
-  function testModal() {
-    console.log('TEST: Directly dispatching openBooking event');
-    window.dispatchEvent(new CustomEvent('openBooking', {
-      detail: {
-        type: 'accommodation',
-        item: {
-          id: 'test',
-          name: 'Test Accommodation',
-          price: '$100',
-          description: 'Test modal functionality'
-        }
-      }
-    }));
-  }
-
-  function testComponentConnection() {
-    console.log('🧪 Testing component event dispatch...');
-    try {
-      dispatch('book', {
-        type: 'test',
-        item: { id: 'component-test', name: 'Component Test' }
-      });
-      console.log('🧪 Component event dispatched successfully');
-    } catch (error) {
-      console.error('🚨 Component event dispatch failed:', error);
-    }
-  }
 </script>
 
 <div>
@@ -182,19 +154,6 @@
             on:click={() => navigate('tours')}
           >
             Explore Tours
-          </button>
-          <!-- Temporary test buttons -->
-          <button
-            class="bg-red-500 hover:bg-red-600 text-white text-lg font-semibold py-3 px-4 rounded-md"
-            on:click={testModal}
-          >
-            TEST MODAL
-          </button>
-          <button
-            class="bg-orange-500 hover:bg-orange-600 text-white text-lg font-semibold py-3 px-4 rounded-md"
-            on:click={testComponentConnection}
-          >
-            TEST COMPONENT
           </button>
         </div>
       </div>
