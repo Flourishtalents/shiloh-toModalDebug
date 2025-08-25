@@ -1,5 +1,5 @@
 <script>
-  import TravelServices from '../../../lib/components/TravelServices.svelte';
+  import TravelServices from '$lib/components/TravelServices.svelte';
 
   // Get user data
   let user = null;

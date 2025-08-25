@@ -1,5 +1,5 @@
 <script>
-  import Reviews from '../../../lib/components/Reviews.svelte';
+  import Reviews from '$lib/components/Reviews.svelte';
 </script>
 
 <Reviews />

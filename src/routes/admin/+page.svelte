@@ -1,5 +1,5 @@
 <script>
-  import AdminPanel from '../../../lib/components/AdminPanel.svelte';
+  import AdminPanel from '$lib/components/AdminPanel.svelte';
   import { goto } from '$app/navigation';
   
   // Get user data

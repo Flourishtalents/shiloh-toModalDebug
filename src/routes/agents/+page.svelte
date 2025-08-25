@@ -1,5 +1,5 @@
 <script>
-  import AgentPortal from '../../../lib/components/AgentPortal.svelte';
+  import AgentPortal from '$lib/components/AgentPortal.svelte';
   import { goto } from '$app/navigation';
   
   // Get user data

@@ -1,7 +1,7 @@
 <script>
   import { goto } from '$app/navigation';
   import { onMount } from 'svelte';
-  import Home from '../../lib/components/Home.svelte';
+  import Home from '$lib/components/Home.svelte';
 
   let user = null;
 

@@ -1,5 +1,5 @@
 <script>
-  import Wishlist from '../../../lib/components/Wishlist.svelte';
+  import Wishlist from '$lib/components/Wishlist.svelte';
   import { goto } from '$app/navigation';
   
   // Get user data and check if logged in

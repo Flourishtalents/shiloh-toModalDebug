@@ -1,5 +1,5 @@
 <script>
-  import UserDashboard from '../../../lib/components/UserDashboard.svelte';
+  import UserDashboard from '$lib/components/UserDashboard.svelte';
   import { goto } from '$app/navigation';
 
   // Get user data and check if logged in

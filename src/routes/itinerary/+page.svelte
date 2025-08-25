@@ -1,5 +1,5 @@
 <script>
-  import Itinerary from '../../../lib/components/Itinerary.svelte';
+  import Itinerary from '$lib/components/Itinerary.svelte';
   import { page } from '$app/stores';
   
   // Get user data from layout if needed

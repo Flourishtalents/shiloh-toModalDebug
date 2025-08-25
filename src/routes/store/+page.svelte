@@ -1,5 +1,5 @@
 <script>
-  import EStore from '../../../lib/components/EStore.svelte';
+  import EStore from '$lib/components/EStore.svelte';
   import { goto } from '$app/navigation';
   
   // Get user data
