@@ -19,17 +19,6 @@
   // Reactive statement to determine if we're on ProEmpo page
   $: isProEmpoPage = $page.url.pathname === '/';
 
-  // Debug modal state
-  $: {
-    console.log('Layout state:', {
-      isProEmpoPage,
-      showBookingModal,
-      bookingType,
-      bookingItem: bookingItem?.name || null,
-      pathname: $page.url.pathname
-    });
-  }
-
   // Check if user is logged in from localStorage
   onMount(() => {
     const storedUser = localStorage.getItem('shiloh_user');
@@ -48,11 +37,9 @@
     };
 
     const handleOpenBooking = (event) => {
-      console.log('Layout handleOpenBooking called:', event.detail);
       bookingType = event.detail.type;
       bookingItem = event.detail.item;
       showBookingModal = true;
-      console.log('Modal state updated:', { bookingType, bookingItem, showBookingModal });
     };
 
     window.addEventListener('showAuth', handleShowAuth);

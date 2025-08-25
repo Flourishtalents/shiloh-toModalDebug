@@ -7,11 +7,12 @@
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
+    "start": "node build/index.js",
     "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch"
   },
   "devDependencies": {
-    "@sveltejs/adapter-static": "^3.0.5",
+    "@sveltejs/adapter-node": "^5.2.0",
     "@sveltejs/kit": "^2.8.3",
     "@sveltejs/vite-plugin-svelte": "^4.0.0",
     "autoprefixer": "^10.4.21",
