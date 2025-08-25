@@ -19,11 +19,9 @@
   function handleNavigate(event) {
     const route = event.detail.route;
     if (route === 'home') {
-      goto('/shilohexperience');
-    } else if (route === 'proempo') {
       goto('/');
     } else {
-      goto(`/shilohexperience/${route}`);
+      goto(`/${route}`);
     }
   }
   

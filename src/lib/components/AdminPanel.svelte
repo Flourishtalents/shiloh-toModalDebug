@@ -355,12 +355,12 @@
 
   // Check if user is admin
   function isAdmin() {
-    return user && (user.role === 'admin' || user.email === 'admin@shilohexperience.com');
+    return user && user.role === 'admin';
   }
 
   onMount(() => {
     if (!isAdmin()) {
-      dispatch('navigate', { route: 'home' });
+      dispatch('navigate', { route: '' });
     }
   });
 </script>

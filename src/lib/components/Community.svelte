@@ -1251,7 +1251,7 @@
             <div class="flex items-center space-x-2">
               <input
                 type="text"
-                value="https://shilohexperience.com/groups/{selectedGroup.id}?ref={userEmail}"
+                value="/groups/{selectedGroup.id}?ref={userEmail}"
                 readonly
                 aria-label="Shareable group invitation link"
                 class="flex-1 px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-gray-700"
@@ -1259,7 +1259,7 @@
               <button
                 type="button"
                 class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md transition-colors"
-                on:click={() => navigator.clipboard.writeText(`https://shilohexperience.com/groups/${selectedGroup.id}?ref=${userEmail}`)}
+                on:click={() => navigator.clipboard.writeText(`/groups/${selectedGroup.id}?ref=${userEmail}`)}
               >
                 Copy
               </button>

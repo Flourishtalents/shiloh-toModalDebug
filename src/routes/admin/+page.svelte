@@ -1,5 +1,5 @@
 <script>
-  import EStore from '../../../lib/components/EStore.svelte';
+  import AdminPanel from '../../../lib/components/AdminPanel.svelte';
   import { goto } from '$app/navigation';
   
   // Get user data
@@ -19,13 +19,11 @@
   function handleNavigate(event) {
     const route = event.detail.route;
     if (route === 'home') {
-      goto('/shilohexperience');
-    } else if (route === 'proempo') {
       goto('/');
     } else {
-      goto(`/shilohexperience/${route}`);
+      goto(`/${route}`);
     }
   }
 </script>
 
-<EStore {user} on:navigate={handleNavigate} />
+<AdminPanel {user} on:navigate={handleNavigate} />

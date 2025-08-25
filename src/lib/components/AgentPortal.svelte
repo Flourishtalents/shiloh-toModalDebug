@@ -79,9 +79,9 @@
     },
     referralCode: 'SHILOH-AGT001',
     customLinks: [
-      { id: 1, name: 'Gorilla Trekking Special', url: 'https://shilohexperience.com/gorilla?ref=AGT001', clicks: 234, conversions: 8 },
-      { id: 2, name: 'Tour Packages', url: 'https://shilohexperience.com/safari?ref=AGT001', clicks: 189, conversions: 5 },
-      { id: 3, name: 'Group Travel Deals', url: 'https://shilohexperience.com/groups?ref=AGT001', clicks: 156, conversions: 3 }
+      { id: 1, name: 'Gorilla Trekking Special', url: '/gorilla?ref=AGT001', clicks: 234, conversions: 8 },
+      { id: 2, name: 'Tour Packages', url: '/safari?ref=AGT001', clicks: 189, conversions: 5 },
+      { id: 3, name: 'Group Travel Deals', url: '/groups?ref=AGT001', clicks: 156, conversions: 3 }
     ]
   };
 
@@ -251,9 +251,8 @@
 
   function generateReferralLink(service = '') {
     if (!agentProfile) return '';
-    const baseUrl = window.location.origin;
     const servicePath = service ? `/${service}` : '';
-    return `${baseUrl}${servicePath}?ref=${agentProfile.referralCode}`;
+    return `${servicePath}?ref=${agentProfile.referralCode}`;
   }
 
   function copyToClipboard(text) {
@@ -414,7 +413,7 @@
         </div>
 
         <!-- Demo Button for Testing -->
-        {#if user.email === 'admin@shilohexperience.com'}
+        {#if user.role === 'admin'}
           <div class="mt-4 text-center">
             <button 
               class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md transition-colors text-sm"
@@ -445,7 +444,7 @@
           </ul>
         </div>
         <p class="text-sm text-gray-500">
-          Questions? Contact us at <a href="mailto:agents@shilohexperience.com" class="text-primary">agents@shilohexperience.com</a>
+          Questions? Contact us at <a href="mailto:agents@shiloh.com" class="text-primary">agents@shiloh.com</a>
         </p>
       </div>
 

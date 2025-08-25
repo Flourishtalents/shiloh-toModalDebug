@@ -1,5 +1,3 @@
-// Performance utilities for lightning-fast rendering
-
 /**
  * Debounce function to prevent excessive function calls
  * @param {Function} func - Function to debounce
@@ -8,14 +6,18 @@
  * @returns {Function} Debounced function
  */
 export function debounce(func, wait, immediate = false) {
-  let timeout;
+  /** @type {NodeJS.Timeout | null} */
+  let timeout = null;
+  /**
+   * @param {...any} args
+   */
   return function executedFunction(...args) {
     const later = () => {
       timeout = null;
       if (!immediate) func(...args);
     };
     const callNow = immediate && !timeout;
-    clearTimeout(timeout);
+    if (timeout) clearTimeout(timeout);
     timeout = setTimeout(later, wait);
     if (callNow) func(...args);
   };
@@ -28,21 +30,26 @@ export function debounce(func, wait, immediate = false) {
  * @returns {Function} Throttled function
  */
 export function throttle(func, limit) {
-  let inThrottle;
+  /** @type {boolean} */
+  let inThrottle = false;
+  /**
+   * @this {any}
+   * @param {...any} args
+   */
   return function(...args) {
     if (!inThrottle) {
       func.apply(this, args);
       inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
+      setTimeout(() => (inThrottle = false), limit);
     }
   };
 }
 
 /**
  * Lazy image loading with intersection observer
- * @param {HTMLElement} img - Image element
+ * @param {HTMLImageElement} img - Image element
  * @param {string} src - Image source URL
- * @param {Object} options - Observer options
+ * @param {IntersectionObserverInit} options - Observer options
  */
 export function lazyLoadImage(img, src, options = {}) {
   const defaultOptions = {
@@ -56,7 +63,7 @@ export function lazyLoadImage(img, src, options = {}) {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const image = entry.target;
+        const image = /** @type {HTMLImageElement} */ (entry.target);
         image.src = src;
         image.classList.add('loaded');
         observer.unobserve(image);
@@ -69,7 +76,7 @@ export function lazyLoadImage(img, src, options = {}) {
 
 /**
  * Preload critical resources
- * @param {Array} resources - Array of resource URLs
+ * @param {string[]} resources - Array of resource URLs
  * @param {string} type - Resource type (script, style, image)
  */
 export function preloadResources(resources, type = 'script') {
@@ -86,12 +93,20 @@ export function preloadResources(resources, type = 'script') {
  * Memory-efficient component store
  */
 export class ComponentStore {
+  /**
+   * @param {number} maxSize
+   */
   constructor(maxSize = 5) {
     this.cache = new Map();
     this.maxSize = maxSize;
+    /** @type {any[]} */
     this.accessOrder = [];
   }
   
+  /**
+   * @param {any} key
+   * @param {any} component
+   */
   set(key, component) {
     if (this.cache.has(key)) {
       this.updateAccessOrder(key);
@@ -105,6 +120,9 @@ export class ComponentStore {
     this.cache.set(key, component);
   }
   
+  /**
+   * @param {any} key
+   */
   get(key) {
     if (this.cache.has(key)) {
       this.updateAccessOrder(key);
@@ -113,6 +131,9 @@ export class ComponentStore {
     return null;
   }
   
+  /**
+   * @param {any} key
+   */
   updateAccessOrder(key) {
     const index = this.accessOrder.indexOf(key);
     if (index > -1) {
@@ -133,14 +154,23 @@ export class ComponentStore {
 export class PerformanceMonitor {
   constructor() {
     this.marks = new Map();
+    /** @type {any[]} */
     this.measures = [];
   }
   
+  /**
+   * @param {string} name
+   */
   mark(name) {
     performance.mark(name);
     this.marks.set(name, performance.now());
   }
   
+  /**
+   * @param {string} name
+   * @param {string} startMark
+   * @param {string} endMark
+   */
   measure(name, startMark, endMark) {
     if (startMark && endMark) {
       performance.measure(name, startMark, endMark);
@@ -160,9 +190,13 @@ export class PerformanceMonitor {
     return {
       marks: Object.fromEntries(this.marks),
       measures: this.measures,
+      // @ts-ignore
       memory: performance.memory ? {
+        // @ts-ignore
         used: performance.memory.usedJSHeapSize,
+        // @ts-ignore
         total: performance.memory.totalJSHeapSize,
+        // @ts-ignore
         limit: performance.memory.jsHeapSizeLimit
       } : null
     };
@@ -171,7 +205,7 @@ export class PerformanceMonitor {
 
 /**
  * Virtual scrolling for large lists
- * @param {Array} items - All items
+ * @param {any[]} items - All items
  * @param {number} itemHeight - Height of each item
  * @param {number} containerHeight - Height of container
  * @param {number} scrollTop - Current scroll position

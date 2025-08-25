@@ -46,7 +46,7 @@
         id: 'user_' + Math.floor(Math.random() * 10000),
         name,
         email,
-        role: email === 'admin@shilohexperience.com' ? 'admin' : 'customer',
+        role: email === 'admin@shiloh.com' ? 'admin' : 'customer',
         createdAt: new Date().toISOString()
       };
       
@@ -56,9 +56,9 @@
       // For now, we'll simulate success with mock data
       const user = {
         id: 'user_' + Math.floor(Math.random() * 10000),
-        name: email === 'admin@shilohexperience.com' ? 'Admin User' : 'Demo User',
+        name: email === 'admin@shiloh.com' ? 'Admin User' : 'Demo User',
         email,
-        role: email === 'admin@shilohexperience.com' ? 'admin' : 'customer',
+        role: email === 'admin@shiloh.com' ? 'admin' : 'customer',
         createdAt: '2023-01-01T00:00:00Z'
       };
       

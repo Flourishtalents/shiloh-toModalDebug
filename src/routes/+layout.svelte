@@ -16,9 +16,6 @@
   let isLoggedIn = false;
   let user = null;
 
-  // Reactive statement to determine if we're on ProEmpo page
-  $: isProEmpoPage = $page.url.pathname === '/';
-
   // Check if user is logged in from localStorage
   onMount(() => {
     const storedUser = localStorage.getItem('shiloh_user');
@@ -90,32 +87,28 @@
   <title>The Shiloh Experience - Uganda Travel & Tours</title>
 </svelte:head>
 
-<div class="app" class:pro-empo-active={isProEmpoPage}>
-  {#if !isProEmpoPage}
-    <Header
-      {isLoggedIn}
-      {user}
-      on:login={showAuthModal}
-      on:logout={handleLogout}
-    />
-  {/if}
+<div class="app">
+  <Header
+    {isLoggedIn}
+    {user}
+    on:login={showAuthModal}
+    on:logout={handleLogout}
+  />
 
   <main>
     <slot />
   </main>
 
-  {#if !isProEmpoPage}
-    <Footer />
-  {/if}
+  <Footer />
 
-  {#if !isProEmpoPage && showAuth}
+  {#if showAuth}
     <Auth
       on:close={hideAuthModal}
       on:login={handleLogin}
     />
   {/if}
 
-  {#if !isProEmpoPage && showBookingModal}
+  {#if showBookingModal}
     <BookingModal
       {bookingType}
       {bookingItem}
@@ -127,31 +120,14 @@
     />
   {/if}
 
-  <!-- AI Chatbot - Available on all pages except Pro Empo -->
-  {#if !isProEmpoPage}
-    <AIChatbot {user} />
-  {/if}
+  <!-- AI Chatbot - Available on all pages -->
+  <AIChatbot {user} />
 </div>
 
 <style>
   .app {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-  }
-
-  /* Pro Empo isolation */
-  .app.pro-empo-active {
-    position: relative;
-    width: 100vw;
-    min-height: 100vh;
-    z-index: 9999;
-    background: white;
-  }
-
-  .app.pro-empo-active main {
-    flex: 1;
-    width: 100%;
     min-height: 100vh;
   }
 
@@ -173,52 +149,47 @@
     overflow-x: hidden;
   }
 
-  /* ProEmpo font styling */
-  .app.pro-empo-active :global(*) {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
-  }
-
   /* Shiloh Experience font styling */
-  .app:not(.pro-empo-active) :global(*) {
+  :global(*) {
     font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif !important;
   }
 
-  .app:not(.pro-empo-active) :global(h1) {
+  :global(h1) {
     font-family: 'Plus Jakarta Sans', 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif !important;
     font-weight: 650 !important;
     line-height: 1.25 !important;
     letter-spacing: -0.025em !important;
   }
 
-  .app:not(.pro-empo-active) :global(h2) {
+  :global(h2) {
     font-family: 'Plus Jakarta Sans', 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif !important;
     font-weight: 650 !important;
     line-height: 1.25 !important;
     letter-spacing: -0.025em !important;
   }
 
-  .app:not(.pro-empo-active) :global(h3) {
+  :global(h3) {
     font-family: 'Plus Jakarta Sans', 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif !important;
     font-weight: 650 !important;
     line-height: 1.25 !important;
     letter-spacing: -0.025em !important;
   }
 
-  .app:not(.pro-empo-active) :global(h4) {
+  :global(h4) {
     font-family: 'Plus Jakarta Sans', 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif !important;
     font-weight: 650 !important;
     line-height: 1.25 !important;
     letter-spacing: -0.025em !important;
   }
 
-  .app:not(.pro-empo-active) :global(h5) {
+  :global(h5) {
     font-family: 'Plus Jakarta Sans', 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif !important;
     font-weight: 650 !important;
     line-height: 1.25 !important;
     letter-spacing: -0.025em !important;
   }
 
-  .app:not(.pro-empo-active) :global(h6) {
+  :global(h6) {
     font-family: 'Plus Jakarta Sans', 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif !important;
     font-weight: 650 !important;
     line-height: 1.25 !important;

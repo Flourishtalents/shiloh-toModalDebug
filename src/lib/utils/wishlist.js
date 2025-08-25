@@ -1,6 +1,9 @@
 // Global wishlist utility functions
 
-// Add item to wishlist
+/**
+ * @param {any} item
+ * @param {any} userId
+ */
 export function addToWishlist(item, userId) {
   if (!userId) return { success: false, message: 'Please log in to add items to wishlist' };
   
@@ -32,7 +35,11 @@ export function addToWishlist(item, userId) {
   return { success: true, message: 'Added to wishlist' };
 }
 
-// Remove item from wishlist
+/**
+ * @param {any} itemId
+ * @param {any} itemType
+ * @param {any} userId
+ */
 export function removeFromWishlist(itemId, itemType, userId) {
   if (!userId) return { success: false, message: 'Please log in' };
   
@@ -60,7 +67,11 @@ export function removeFromWishlist(itemId, itemType, userId) {
   return { success: true, message: 'Removed from wishlist' };
 }
 
-// Check if item is in wishlist
+/**
+ * @param {any} itemId
+ * @param {any} itemType
+ * @param {any} userId
+ */
 export function isInWishlist(itemId, itemType, userId) {
   if (!userId) return false;
   
@@ -71,7 +82,9 @@ export function isInWishlist(itemId, itemType, userId) {
   return wishlist.some(item => item.id === itemId && item.type === itemType);
 }
 
-// Get wishlist count
+/**
+ * @param {any} userId
+ */
 export function getWishlistCount(userId) {
   if (!userId) return 0;
   
@@ -82,7 +95,9 @@ export function getWishlistCount(userId) {
   return wishlist.length;
 }
 
-// Update wishlist count in header
+/**
+ * @param {any} count
+ */
 export function updateWishlistCount(count) {
   const countElement = document.getElementById('wishlist-count');
   if (countElement) {
@@ -95,7 +110,9 @@ export function updateWishlistCount(count) {
   }
 }
 
-// Get all wishlist items
+/**
+ * @param {any} userId
+ */
 export function getWishlistItems(userId) {
   if (!userId) return [];
   
@@ -105,7 +122,9 @@ export function getWishlistItems(userId) {
   return JSON.parse(savedWishlist);
 }
 
-// Clear entire wishlist
+/**
+ * @param {any} userId
+ */
 export function clearWishlist(userId) {
   if (!userId) return { success: false, message: 'Please log in' };
   

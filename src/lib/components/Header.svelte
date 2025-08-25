@@ -11,9 +11,9 @@
   $: currentRoute = getCurrentRoute(currentPath);
 
   function getCurrentRoute(path) {
-    if (path === '/shilohexperience') return 'home';
-    if (path.startsWith('/shilohexperience/')) {
-      const route = path.replace('/shilohexperience/', '');
+    if (path === '/') return 'home';
+    if (path.startsWith('/')) {
+      const route = path.replace('/', '');
       return route;
     }
     return 'home';
@@ -96,11 +96,9 @@
 
   function navigate(route) {
     if (route === 'home') {
-      goto('/shilohexperience');
-    } else if (route === 'proempo') {
       goto('/');
     } else {
-      goto(`/shilohexperience/${route}`);
+      goto(`/${route}`);
     }
     isMobileMenuOpen = false;
   }
@@ -253,7 +251,7 @@
 
       <!-- Auth Button -->
       {#if isLoggedIn}
-        {#if user?.role === 'admin' || user?.email === 'admin@shilohexperience.com'}
+        {#if user?.role === 'admin'}
           <button
             class="text-sm font-medium text-primary mr-2 hover:text-primary-dark transition-colors"
             on:click={() => navigate('admin')}

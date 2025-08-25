@@ -32,7 +32,7 @@
   const contactInfo = {
     address: "Kutta Road, Muyenga, Kampala, Uganda",
     phone: "+256 703 462 969",
-    email: "info@shilohexperience.com",
+    email: "info@shiloh.com",
     hours: "Monday - Friday: 8:00 AM - 6:00 PM\nSaturday: 9:00 AM - 2:00 PM\nSunday: Closed"
   }
   
