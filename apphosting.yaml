@@ -3,21 +3,9 @@ specVersion: v1alpha1
 
 # Specifies the command to run to build your app.
 build:
-  # The command to build your application.
-  run: npm run build
-  # The directory to run the build command in.
-  # Defaults to the repository root.
-  # workingDir: /
+  # This command will first fix the lockfile, then build the app.
+  run: pnpm install --no-frozen-lockfile && npm run build
 
 # Specifies the command to run to start your app.
 run:
-  # The command to start your application.
   run: npm start
-  # The directory to run the start command in.
-  # Defaults to the repository root.
-  # workingDir: /
-
-# The port that your application listens on.
-# Defaults to 8080.
-# App Hosting will set the PORT environment variable to this value.
-# port: 8080
