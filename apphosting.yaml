@@ -1,0 +1,10 @@
+# Specifies the version of the App Hosting platform to use.
+specVersion: v1alpha1
+
+# Specifies the command to run to build your app.
+build:
+  run: npm run build
+
+# Specifies the command to run to start your app.
+run:
+  run: npm start
