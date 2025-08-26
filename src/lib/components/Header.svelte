@@ -12,11 +12,7 @@
 
   function getCurrentRoute(path) {
     if (path === '/') return 'home';
-    if (path.startsWith('/')) {
-      const route = path.replace('/', '');
-      return route;
-    }
-    return 'home';
+    return path.substring(1);
   }
 
   // Cart and Wishlist state management
@@ -251,7 +247,7 @@
 
       <!-- Auth Button -->
       {#if isLoggedIn}
-        {#if user?.role === 'admin'}
+        {#if user?.role === 'admin' || user?.email === 'admin@shilohexperience.com'}
           <button
             class="text-sm font-medium text-primary mr-2 hover:text-primary-dark transition-colors"
             on:click={() => navigate('admin')}

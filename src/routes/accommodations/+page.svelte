@@ -1,5 +1,5 @@
 <script>
-  import Accommodations from '$lib/components/Accommodations.svelte';
+  import Accommodations from '../../lib/components/Accommodations.svelte';
 
   // Get user data
   let user = null;

@@ -251,8 +251,9 @@
 
   function generateReferralLink(service = '') {
     if (!agentProfile) return '';
+    const baseUrl = window.location.origin;
     const servicePath = service ? `/${service}` : '';
-    return `${servicePath}?ref=${agentProfile.referralCode}`;
+    return `${baseUrl}${servicePath}?ref=${agentProfile.referralCode}`;
   }
 
   function copyToClipboard(text) {
@@ -413,7 +414,7 @@
         </div>
 
         <!-- Demo Button for Testing -->
-        {#if user.role === 'admin'}
+        {#if user.email === 'admin@shilohexperience.com'}
           <div class="mt-4 text-center">
             <button 
               class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md transition-colors text-sm"
@@ -444,7 +445,7 @@
           </ul>
         </div>
         <p class="text-sm text-gray-500">
-          Questions? Contact us at <a href="mailto:agents@shiloh.com" class="text-primary">agents@shiloh.com</a>
+          Questions? Contact us at <a href="mailto:agents@shilohexperience.com" class="text-primary">agents@shilohexperience.com</a>
         </p>
       </div>
 

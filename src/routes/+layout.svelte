@@ -1,6 +1,5 @@
 <script>
   import { onMount } from 'svelte';
-  import { page } from '$app/stores';
   import Header from '../lib/components/Header.svelte';
   import Footer from '../lib/components/Footer.svelte';
   import Auth from '../lib/components/Auth.svelte';
@@ -120,7 +119,6 @@
     />
   {/if}
 
-  <!-- AI Chatbot - Available on all pages -->
   <AIChatbot {user} />
 </div>
 
@@ -149,47 +147,11 @@
     overflow-x: hidden;
   }
 
-  /* Shiloh Experience font styling */
   :global(*) {
     font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif !important;
   }
 
-  :global(h1) {
-    font-family: 'Plus Jakarta Sans', 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif !important;
-    font-weight: 650 !important;
-    line-height: 1.25 !important;
-    letter-spacing: -0.025em !important;
-  }
-
-  :global(h2) {
-    font-family: 'Plus Jakarta Sans', 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif !important;
-    font-weight: 650 !important;
-    line-height: 1.25 !important;
-    letter-spacing: -0.025em !important;
-  }
-
-  :global(h3) {
-    font-family: 'Plus Jakarta Sans', 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif !important;
-    font-weight: 650 !important;
-    line-height: 1.25 !important;
-    letter-spacing: -0.025em !important;
-  }
-
-  :global(h4) {
-    font-family: 'Plus Jakarta Sans', 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif !important;
-    font-weight: 650 !important;
-    line-height: 1.25 !important;
-    letter-spacing: -0.025em !important;
-  }
-
-  :global(h5) {
-    font-family: 'Plus Jakarta Sans', 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif !important;
-    font-weight: 650 !important;
-    line-height: 1.25 !important;
-    letter-spacing: -0.025em !important;
-  }
-
-  :global(h6) {
+  :global(h1), :global(h2), :global(h3), :global(h4), :global(h5), :global(h6) {
     font-family: 'Plus Jakarta Sans', 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif !important;
     font-weight: 650 !important;
     line-height: 1.25 !important;

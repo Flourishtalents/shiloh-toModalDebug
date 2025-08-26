@@ -1,5 +1,5 @@
 <script>
-  import Tours from '$lib/components/Tours.svelte';
+  import Tours from '../../lib/components/Tours.svelte';
 
   // Get user data
   let user = null;

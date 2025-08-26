@@ -1,25 +1,10 @@
 // Global wishlist utility functions
 
-/**
- * @typedef {object} WishlistItem
- * @property {string | number} id
- * @property {string} type
- * @property {string} [name]
- * @property {string | number} [price]
- * @property {string} [image]
- * @property {string} addedDate
- */
-
-/**
- * @param {Omit<WishlistItem, 'addedDate'>} item
- * @param {string | number} userId
- * @returns {{success: boolean, message: string}}
- */
+// Add item to wishlist
 export function addToWishlist(item, userId) {
   if (!userId) return { success: false, message: 'Please log in to add items to wishlist' };
   
   const savedWishlist = localStorage.getItem(`shiloh_wishlist_${userId}`);
-  /** @type {WishlistItem[]} */
   let wishlist = savedWishlist ? JSON.parse(savedWishlist) : [];
   
   // Check if item already exists
@@ -47,19 +32,13 @@ export function addToWishlist(item, userId) {
   return { success: true, message: 'Added to wishlist' };
 }
 
-/**
- * @param {string | number} itemId
- * @param {string} itemType
- * @param {string | number} userId
- * @returns {{success: boolean, message: string}}
- */
+// Remove item from wishlist
 export function removeFromWishlist(itemId, itemType, userId) {
   if (!userId) return { success: false, message: 'Please log in' };
   
   const savedWishlist = localStorage.getItem(`shiloh_wishlist_${userId}`);
   if (!savedWishlist) return { success: false, message: 'Wishlist is empty' };
   
-  /** @type {WishlistItem[]} */
   let wishlist = JSON.parse(savedWishlist);
   const originalLength = wishlist.length;
   wishlist = wishlist.filter(item => !(item.id === itemId && item.type === itemType));
@@ -81,45 +60,33 @@ export function removeFromWishlist(itemId, itemType, userId) {
   return { success: true, message: 'Removed from wishlist' };
 }
 
-/**
- * @param {string | number} itemId
- * @param {string} itemType
- * @param {string | number} userId
- * @returns {boolean}
- */
+// Check if item is in wishlist
 export function isInWishlist(itemId, itemType, userId) {
   if (!userId) return false;
   
   const savedWishlist = localStorage.getItem(`shiloh_wishlist_${userId}`);
   if (!savedWishlist) return false;
   
-  /** @type {WishlistItem[]} */
   const wishlist = JSON.parse(savedWishlist);
   return wishlist.some(item => item.id === itemId && item.type === itemType);
 }
 
-/**
- * @param {string | number} userId
- * @returns {number}
- */
+// Get wishlist count
 export function getWishlistCount(userId) {
   if (!userId) return 0;
   
   const savedWishlist = localStorage.getItem(`shiloh_wishlist_${userId}`);
   if (!savedWishlist) return 0;
   
-  /** @type {WishlistItem[]} */
   const wishlist = JSON.parse(savedWishlist);
   return wishlist.length;
 }
 
-/**
- * @param {number} count
- */
+// Update wishlist count in header
 export function updateWishlistCount(count) {
   const countElement = document.getElementById('wishlist-count');
   if (countElement) {
-    countElement.textContent = String(count || 0);
+    countElement.textContent = count || 0;
     if (count > 0) {
       countElement.classList.remove('hidden');
     } else {
@@ -128,10 +95,7 @@ export function updateWishlistCount(count) {
   }
 }
 
-/**
- * @param {string | number} userId
- * @returns {WishlistItem[]}
- */
+// Get all wishlist items
 export function getWishlistItems(userId) {
   if (!userId) return [];
   
@@ -141,10 +105,7 @@ export function getWishlistItems(userId) {
   return JSON.parse(savedWishlist);
 }
 
-/**
- * @param {string | number} userId
- * @returns {{success: boolean, message: string}}
- */
+// Clear entire wishlist
 export function clearWishlist(userId) {
   if (!userId) return { success: false, message: 'Please log in' };
   

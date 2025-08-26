@@ -305,12 +305,12 @@
       } else if (lowerMessage.includes('contact') || lowerMessage.includes('human') || lowerMessage.includes('speak to')) {
         // Human support
         addBotMessage("I'd be happy to connect you with our human team! 👨‍💼");
-        addBotMessage("📧 Email: info@shiloh.com");
+        addBotMessage("�� Email: info@shiloexperience.com");
         addBotMessage("📞 Phone: +256 703 462 969");
         addBotMessage("💬 WhatsApp: +256 703 462 969");
         addBotMessage("**The Shiloh Experience Customer Support:**");
-        addBotMessage("📧 Email: info@shiloh.com");
-        addBotMessage("🌐 Website: shiloh.com");
+        addBotMessage("📧 Email: info@shilohexperience.com");
+        addBotMessage("🌐 Website: www.shilohexperience.com");
         addBotMessage("📍 Location: Kutta Road, Muyenga, Kampala, Uganda");
         addBotMessage("⏰ Business Hours: Mon-Fri 8:00 AM - 6:00 PM, Sat 9:00 AM - 2:00 PM");
         addBotMessage("Our friendly team is ready to help plan your perfect Uganda adventure!");
